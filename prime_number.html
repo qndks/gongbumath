@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="shortcut icon" href="./favicon.ico">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
 		<title>소수</title>
 	</head>
 	<body>
@@ -25,14 +25,14 @@
 			     for (k = 0; result[k] <= s; k++) if (num % result[k] === 0) return !1;
 			     return k !== num;
 			}
-			
+
 			var result = [];
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
 			var o = document.getElementById('output');
 			var a = document.getElementById('amount');
 			var d = document.getElementById('display_prime');
-			
+
 			function primer() {
 				o.innerHTML = '';
 				result = [2, 3];

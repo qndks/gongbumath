@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="shortcut icon" href="./favicon.ico">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 		<title>소수 정리</title>
 	</head>
@@ -21,13 +21,13 @@
 			     for (k = 0; result[k] <= s; k++) if (num % result[k] === 0) return !1;
 			     return k !== num;
 			}
-			
+
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
 			var result;
 			var count;
 			var labels;
-			
+
 			function primer() {
 				result = [2, 3];
 				var l = Number(lim.value);
@@ -42,7 +42,7 @@
 				log = [];
 				for (i = 1; i <= l; i += 1) {
 					count.push(result.filter(function(el) {
-                                            return el <= i;    
+                                            return el <= i;
                                         }).length);
                                         labels.push(i);
 					log.push(i / Math.log(i));
