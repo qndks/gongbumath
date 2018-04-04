@@ -1,0 +1,28 @@
+.math-heading {
+  padding-bottom:5px;
+}
+
+h1.math-heading {
+  font-size:1.6rem;
+}
+
+h2.math-heading {
+  font-size:1.3rem;
+}
+
+h3.math-heading {
+  font-size:1.2rem;
+}
+
+a {
+  text-decoration:none;
+  color:#0275d8;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+a.math-heading-link {
+  color:#000000;
+}
