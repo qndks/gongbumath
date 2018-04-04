@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./favicon.ico">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<title>소수 정리</title>
+	</head>
+	<body>
+		<h2>소수 정리</h2>
+		<input id="lim" type="text" value="100">
+		<input type="button" onclick="primer();" value="완료">
+		<p id="time"></p>
+		<canvas id="myChart"></canvas>
+		<script>
+			function isPrime(num, result) {
+			     if (num % 1 !== 0 || 0 === num) return !1;
+			     var s = Math.sqrt(num);
+			     var k;
+			     for (k = 0; result[k] <= s; k++) if (num % result[k] === 0) return !1;
+			     return k !== num;
+			}
+			
+			var t = document.getElementById('time');
+			var lim = document.getElementById('lim');
+			var result;
+			var count;
+			var labels;
+			
+			function primer() {
+				result = [2, 3];
+				var l = Number(lim.value);
+				var i;
+				var t1 = performance.now();
+				for (i = 6; i <= l; i += 6) {
+					if (isPrime(i - 1, result)) result.push(i - 1);
+                                        if (isPrime(i + 1, result)) result.push(i + 1);
+				}
+				count = [];
+				labels = [];
+				log = [];
+				for (i = 1; i <= l; i += 1) {
+					count.push(result.filter(function(el) {
+                                            return el <= i;    
+                                        }).length);
+                                        labels.push(i);
+					log.push(i / Math.log(i));
+				}
+				var chart = new Chart(document.getElementById('myChart'), {
+					type: 'line',
+					data: {
+						labels: labels,
+						datasets: [{
+						    	label: "소수 계량 함수",
+						    	borderColor: '#000000',
+							backgroundColor: 'transparent',
+							pointBackgroundColor: 'transparent',
+							pointBorderColor: 'transparent',
+						    	data: count
+						}, {
+							label: "로그",
+							backgroundColor: 'transparent',
+							pointBackgroundColor: 'transparent',
+							pointBorderColor: 'transparent',
+						    	borderColor: '#aaaaaa',
+						    	data: log
+						}]
+					},
+					options: {
+						elements: {
+						    	line: {
+								tension: 0
+						    	}
+						}
+    					}
+				});
+				var t2 = performance.now();
+				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+			}
+		</script>
+	</body>
+</html>

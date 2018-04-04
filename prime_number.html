@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./favicon.ico">
+		<title>소수</title>
+	</head>
+	<body>
+		<h2>소수 찾기</h2>
+		<input id="lim" type="text" value="10000">
+		<input type="button" onclick="primer();" value="완료">
+		<br>
+		<br>
+		<input type="checkbox" id="display_prime">
+		<label for="display_prime">소수 보여주기</label>
+		<p id="time"></p>
+		<p id="amount"></p>
+		<p id="output"></p>
+		<script>
+			function isPrime(num, result) {
+			     if (num % 1 !== 0 || 0 === num) return !1;
+			     var s = Math.sqrt(num);
+			     var k;
+			     for (k = 0; result[k] <= s; k++) if (num % result[k] === 0) return !1;
+			     return k !== num;
+			}
+			
+			var result = [];
+			var t = document.getElementById('time');
+			var lim = document.getElementById('lim');
+			var o = document.getElementById('output');
+			var a = document.getElementById('amount');
+			var d = document.getElementById('display_prime');
+			
+			function primer() {
+				o.innerHTML = '';
+				result = [2, 3];
+				var l = Number(lim.value);
+				var i;
+				var t1 = performance.now();
+				for (i = 6; i <= l; i += 6) {
+					if (isPrime(i - 1, result)) result.push(i - 1);
+					if (isPrime(i + 1, result)) result.push(i + 1);
+				}
+				if (d.checked) o.innerHTML = result.join(', ');
+				a.innerHTML = result.length + ' 개';
+				var t2 = performance.now();
+				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+			}
+		</script>
+	</body>
+</html>
