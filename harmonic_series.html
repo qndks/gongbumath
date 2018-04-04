@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<title>조화 급수</title>
+	</head>
+	<body>
+		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부:수학</a></h1>
+		<h2 class="math-heading">조화 급수</h2>
+		<canvas id="myChart"></canvas>
+		<script>
+      var h = [];
+      var labels = [];
+      var c = 0;
+      for (var i = 1; i <= 10000; i++) {
+        h.push(c + (1 / i));
+        c += 1 / i;
+        labels.push(i);
+      }
+			var chart = new Chart(document.getElementById('myChart'), {
+				type: 'line',
+				data: {
+					labels: labels,
+					datasets: [{
+            label: "조화 급수",
+            borderColor: '#000000',
+            backgroundColor: 'transparent',
+            pointBackgroundColor: 'transparent',
+            pointBorderColor: 'transparent',
+            data: h
+          }]
+				},
+				options: {
+					elements: {
+					  line: {
+							tension: 0
+					  }
+					}
+  			}
+			});
+		</script>
+	</body>
+</html>

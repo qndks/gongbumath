@@ -47,28 +47,28 @@
 					data: {
 						labels: labels,
 						datasets: [{
-						    	label: "소수 계량 함수",
-						    	borderColor: '#000000',
+						  label: "소수 계량 함수",
+						  borderColor: '#000000',
 							backgroundColor: 'transparent',
 							pointBackgroundColor: 'transparent',
 							pointBorderColor: 'transparent',
-						    	data: count
+						  data: count
 						}, {
 							label: "로그",
 							backgroundColor: 'transparent',
 							pointBackgroundColor: 'transparent',
 							pointBorderColor: 'transparent',
-						    	borderColor: '#aaaaaa',
-						    	data: log
+						  borderColor: '#aaaaaa',
+						  data: log
 						}]
 					},
 					options: {
 						elements: {
-						    	line: {
+						  line: {
 								tension: 0
-						    	}
+						  }
 						}
-    					}
+    			}
 				});
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';

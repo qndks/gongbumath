@@ -39,40 +39,40 @@
 				twins = [];
 				for (i = 1; i <= l; i += 1) {
 					count.push(result.filter(function(el) {
-                                            return el <= i;
-                                        }).length);
-                                        labels.push(i);
+            return el <= i;
+          }).length);
+          labels.push(i);
 					twins.push(twin.filter(function(el) {
-                                            return el <= i;
-                                        }).length);
+            return el <= i;
+          }).length);
 				}
 				var chart = new Chart(document.getElementById('myChart'), {
 					type: 'line',
 					data: {
 						labels: labels,
 						datasets: [{
-						    	label: "소수 계량 함수",
-						    	borderColor: '#000000',
+				    	label: "소수 계량 함수",
+				    	borderColor: '#000000',
 							backgroundColor: 'transparent',
 							pointBackgroundColor: 'transparent',
 							pointBorderColor: 'transparent',
-						    	data: count
+				    	data: count
 						}, {
 							label: "쌍둥이 소수 계량 함수",
 							backgroundColor: 'transparent',
 							pointBackgroundColor: 'transparent',
 							pointBorderColor: 'transparent',
-						    	borderColor: '#aaaaaa',
-						    	data: twins
+				    	borderColor: '#aaaaaa',
+				    	data: twins
 						}]
 					},
 					options: {
 						elements: {
-						    	line: {
+						  line: {
 								tension: 0
-						    	}
+						  }
 						}
-    					}
+    			}
 				});
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
