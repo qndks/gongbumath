@@ -44,7 +44,7 @@
 				log = [];
 				sub = [];
 
-				for (i = 1; i <= l; i += Math.ceil(lim/1000)) {
+				for (i = 1; i <= l; i += Math.ceil(l/1000)) {
 					count.push(result.filter(function(el) {
                         return el <= i;
                     }).length);
