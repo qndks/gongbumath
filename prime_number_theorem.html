@@ -44,6 +44,7 @@
 				labels = [];
 				log = [];
 				sub = [];
+				li = [];
 
 				if (!d.checked) {
 					for (i = 1; i <= l; i += inc) {
@@ -85,9 +86,16 @@
 				} else {
 					for (i = 2; i <= l; i += inc) {
 						labels.push(i);
-						sub.push(result.filter(function(el) {
+						var pix = result.filter(function(el) {
 	                        return el <= i;
-	                    }).length / (i / Math.log(i)));
+	                    }).length
+						var lix = -1;
+						var n;
+						for (n = 1; n <= 100; n++) {
+							lix += i / (Math.log(ni/100) * 100)
+						}
+						sub.push(pix / (i / Math.log(i)));
+						li.push(pix / lix);
 					}
 
 					var chart = new Chart(document.getElementById('myChart'), {
@@ -101,6 +109,13 @@
 								pointBackgroundColor: 'transparent',
 								pointBorderColor: 'transparent',
 							 	data: sub
+							}, {
+							  	label: "소수 계량 함수와 로그 적분 함수의 비",
+							 	borderColor: '#000000',
+								backgroundColor: 'transparent',
+								pointBackgroundColor: 'transparent',
+								pointBorderColor: 'transparent',
+							 	data: lix
 							}]
 						},
 						options: {
