@@ -45,15 +45,15 @@
 				log = [];
 				sub = [];
 
-				for (i = 1; i <= l; i += inc) {
-					count.push(result.filter(function(el) {
-                        return el <= i;
-                    }).length);
-                    labels.push(i);
-					log.push(i / Math.log(i));
-				}
-
 				if (!d.checked) {
+					for (i = 1; i <= l; i += inc) {
+						count.push(result.filter(function(el) {
+	                        return el <= i;
+	                    }).length);
+	                    labels.push(i);
+						log.push(i / Math.log(i));
+					}
+
 					var chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
@@ -83,9 +83,13 @@
 	    				}
 					});
 				} else {
-					for (i = 1; i <= l; i += 1) {
-						sub.push(count[i] / log[i]);
+					for (i = 1; i <= l; i += inc) {
+						labels.push(i);
+						sub.push(result.filter(function(el) {
+	                        return el <= i;
+	                    }).length / (i / Math.log(i)));
 					}
+					
 					var chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
