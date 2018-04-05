@@ -14,12 +14,17 @@
 		<p><a href="https://gongbu.herokuapp.com/study/소수 정리">소수 정리</a>는 <a href="https://gongbu.herokuapp.com/study/소수 계량 함수">소수 계량 함수</a> π(x)가 x/ln(x) 에 근사한다는 정리이다.</p>
 		<input id="lim" type="text" value="100">
 		<input type="button" onclick="primer();" value="완료">
+		<br>
+		<br>
+		<input type="checkbox" id="sub">
+		<label for="sub">차를 보여주기</label>
 		<p id="time"></p>
 		<canvas id="myChart"></canvas>
 		<script src="./public/js/isPrime.js"></script>
 		<script>
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
+			var d = document.getElementById('sub');
 			var result;
 			var count;
 			var labels;
@@ -37,43 +42,71 @@
 				count = [];
 				labels = [];
 				log = [];
+				sub = [];
 
 				for (i = 1; i <= l; i += 1) {
 					count.push(result.filter(function(el) {
-                                            return el <= i;
-                                        }).length);
-                                        labels.push(i);
+                        return el <= i;
+                    }).length);
+                    labels.push(i);
 					log.push(i / Math.log(i));
 				}
 
-				var chart = new Chart(document.getElementById('myChart'), {
-					type: 'line',
-					data: {
-						labels: labels,
-						datasets: [{
-						  	label: "소수 계량 함수",
-						 	borderColor: '#000000',
-							backgroundColor: 'transparent',
-							pointBackgroundColor: 'transparent',
-							pointBorderColor: 'transparent',
-						 	data: count
-						}, {
-							label: "로그",
-							backgroundColor: 'transparent',
-							pointBackgroundColor: 'transparent',
-							pointBorderColor: 'transparent',
-							borderColor: '#aaaaaa',
-							data: log
-						}]
-					},
-					options: {
-						elements: {
-						  	line: {
-								tension: 0
-						  	}
-						}
-    				}
-				});
+				if (!d.checked) {
+					var chart = new Chart(document.getElementById('myChart'), {
+						type: 'line',
+						data: {
+							labels: labels,
+							datasets: [{
+							  	label: "소수 계량 함수",
+							 	borderColor: '#000000',
+								backgroundColor: 'transparent',
+								pointBackgroundColor: 'transparent',
+								pointBorderColor: 'transparent',
+							 	data: count
+							}, {
+								label: "로그",
+								backgroundColor: 'transparent',
+								pointBackgroundColor: 'transparent',
+								pointBorderColor: 'transparent',
+								borderColor: '#aaaaaa',
+								data: log
+							}]
+						},
+						options: {
+							elements: {
+							  	line: {
+									tension: 0
+							  	}
+							}
+	    				}
+					});
+				} else {
+					for (i = 1; i <= l; i += 1) {
+						sub.push(count[i] - log[i]);
+					}
+					var chart = new Chart(document.getElementById('myChart'), {
+						type: 'line',
+						data: {
+							labels: labels,
+							datasets: [{
+							  	label: "소수 계량 함수와 로그 함수의 차",
+							 	borderColor: '#000000',
+								backgroundColor: 'transparent',
+								pointBackgroundColor: 'transparent',
+								pointBorderColor: 'transparent',
+							 	data: sub
+							}]
+						},
+						options: {
+							elements: {
+							  	line: {
+									tension: 0
+							  	}
+							}
+	    				}
+					});
+				}
 
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
