@@ -46,7 +46,7 @@
 				sub = [];
 
 				if (!d.checked) {
-					for (i = 2; i <= l; i += inc) {
+					for (i = 1; i <= l; i += inc) {
 						count.push(result.filter(function(el) {
 	                        return el <= i;
 	                    }).length);
@@ -83,7 +83,7 @@
 	    				}
 					});
 				} else {
-					for (i = 1; i <= l; i += inc) {
+					for (i = 2; i <= l; i += inc) {
 						labels.push(i);
 						sub.push(result.filter(function(el) {
 	                        return el <= i;
