@@ -13,34 +13,45 @@
 		<h2 class="math-heading">조화급수</h2>
 		<canvas id="myChart"></canvas>
 		<script>
-      var h = [];
-      var labels = [];
-      var c = 0;
-      for (var i = 1; i <= 10000; i++) {
-        h.push(c + (1 / i));
-        c += 1 / i;
-        labels.push(i);
-      }
+	        var h = [];
+	        var labels = [];
+			var ln = [];
+	        var c = 0;
+
+	        for (var i = 1; i <= 10000; i++) {
+		        h.push(c + (1 / i));
+		        c += 1 / i;
+		        labels.push(i);
+				ln.push(Math.log(i));
+	        }
+
 			var chart = new Chart(document.getElementById('myChart'), {
 				type: 'line',
 				data: {
 					labels: labels,
 					datasets: [{
-            label: "조화 급수",
-            borderColor: '#000000',
-            backgroundColor: 'transparent',
-            pointBackgroundColor: 'transparent',
-            pointBorderColor: 'transparent',
-            data: h
-          }]
+			            label: "조화급수",
+			            borderColor: '#000000',
+			            backgroundColor: 'transparent',
+			            pointBackgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: h
+			        }, {
+			            label: "자연로그",
+			            borderColor: '#000000',
+			            backgroundColor: 'transparent',
+			            pointBackgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: ln
+			        }]
 				},
 				options: {
 					elements: {
-					  line: {
+					  	line: {
 							tension: 0
-					  }
+					  	}
 					}
-  			}
+  				}
 			});
 		</script>
 	</body>

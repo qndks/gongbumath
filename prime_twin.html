@@ -8,20 +8,20 @@
 		<title>쌍둥이 소수</title>
 	</head>
 	<body>
-		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부:수학</a></h1>
+        <h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부:수학</a></h1>
 		<h2 class="math-heading">쌍둥이 소수 찾기</h2>
 		<input id="lim" type="text" value="10000">
 		<input type="button" onclick="primer();" value="완료">
 		<br>
 		<br>
-		<input type="checkbox" id="display_prime">
-		<label for="display_prime">쌍둥이 소수 보여주기</label>
-		<p id="time"></p>
-		<p id="amount"></p>
-		<p id="output"></p>
+	  	<input type="checkbox" id="display_prime">
+	  	<label for="display_prime">쌍둥이 소수 보여주기</label>
+	  	<p id="time"></p>
+	  	<p id="amount"></p>
+	  	<p id="output"></p>
 		<script src="./public/js/isPrime.js"></script>
 		<script>
-			var result = [];
+		  	var result = [];
 			var prime = [];
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
@@ -30,16 +30,14 @@
 			var d = document.getElementById('display_prime');
 
 			function primer() {
-				o.innerHTML = '';
+            	o.innerHTML = '';
 				prime = [2, 3];
 				result = ['(3, 5)'];
 				var l = Number(lim.value);
 				var i;
 				var t1 = performance.now();
 				for (i = 6; i <= l; i += 6) {
-					if (isPrime(i - 1, prime) && isPrime(i + 1, prime)) {
-						result.push('(' + (i - 1) + ', ' + (i + 1) + ')')
-					}
+					if (isPrime(i - 1, prime) && isPrime(i + 1, prime)) result.push('(' + (i - 1) + ', ' + (i + 1) + ')');
 					if (isPrime(i - 1, prime)) prime.push(i - 1);
 					if (isPrime(i + 1, prime)) prime.push(i + 1);
 				}
