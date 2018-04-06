@@ -24,6 +24,7 @@
 			var labels;
 
 			function primer() {
+				var chart;
 				result = [2, 3];
 				twin = [3, 5];
 				var l = Number(lim.value);
@@ -50,7 +51,7 @@
 			        }).length);
 				}
 
-				var chart = new Chart(document.getElementById('myChart'), {
+				chart = new Chart(document.getElementById('myChart'), {
 					type: 'line',
 					data: {
 						labels: labels,

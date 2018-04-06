@@ -13,6 +13,7 @@
 		<h2 class="math-heading">조화급수</h2>
 		<canvas id="myChart"></canvas>
 		<script>
+			var chart;
 	        var h = [];
 	        var labels = [];
 			var ln = [];
@@ -27,7 +28,7 @@
 				lnp.push(Math.log(i) + 1);
 	        }
 
-			var chart = new Chart(document.getElementById('myChart'), {
+			chart = new Chart(document.getElementById('myChart'), {
 				type: 'line',
 				data: {
 					labels: labels,

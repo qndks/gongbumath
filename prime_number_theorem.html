@@ -30,6 +30,7 @@
 			var labels;
 
 			function primer() {
+				var chart;
 				result = [2, 3];
 				var l = Number(lim.value);
 				var i;
@@ -62,7 +63,7 @@
 						li.push(lix);
 					}
 
-					var chart = new Chart(document.getElementById('myChart'), {
+					chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
 							labels: labels,
@@ -112,7 +113,7 @@
 						li.push(pix / lix);
 					}
 
-					var chart = new Chart(document.getElementById('myChart'), {
+					chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
 							labels: labels,
