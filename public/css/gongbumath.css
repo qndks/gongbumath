@@ -6,11 +6,11 @@ h1.math-heading {
   font-size:1.6rem;
 }
 
-h1.math-heading {
+h1.math-heading > a {
   color: #304a76 !important;
 }
 
-h2.math-heading > a {
+h2.math-heading {
   font-size:1.3rem;
 }
 
