@@ -4,7 +4,7 @@
 
 h1.math-heading {
   font-size:1.6rem;
-  color:#304a76;
+  color:#304a76 !important;
 }
 
 h2.math-heading {
