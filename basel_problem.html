@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<title>바젤 문제</title>
+	</head>
+	<body>
+		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		<h2 class="math-heading">바젤 문제</h2>
+        <input id="lim" type="text" value="1000">
+		<input type="button" onclick="primer();" value="완료">
+		<p id="time"></p>
+		<canvas id="myChart"></canvas>
+		<script>
+            var t = document.getElementById('time');
+            var lim = document.getElementById('lim');
+            function primer() {
+                var b = [];
+                var pi = []
+    	        var labels = [];
+    	        var c = 0;
+                var l = Number(lim.value);
+				var t1 = performance.now();
+
+    	        for (var i = 1; i <= l; i++) {
+                    pi.push(1.643267)
+                    b.push(c + (1 / (i ** 2)))
+                    c += 1 / (i ** 2);
+    		        labels.push(i);
+    	        }
+
+    			var chart = new Chart(document.getElementById('myChart'), {
+    				type: 'line',
+    				data: {
+    					labels: labels,
+    					datasets: [{
+    			            label: "바젤 문제",
+    			            borderColor: '#000000',
+    			            backgroundColor: 'transparent',
+    			            pointBackgroundColor: 'transparent',
+    			            pointBorderColor: 'transparent',
+    			            data: b
+                        }, {
+    			            label: "pi^2/6",
+    			            borderColor: '#dd9301',
+    			            backgroundColor: 'transparent',
+    			            pointBackgroundColor: 'transparent',
+    			            pointBorderColor: 'transparent',
+    			            data: pi
+                        }]
+    				},
+    				options: {
+    					elements: {
+    					  	line: {
+    							tension: 0
+    					  	}
+    					}
+      				}
+    			});
+
+				var t2 = performance.now();
+				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+            }
+		</script>
+	</body>
+</html>
