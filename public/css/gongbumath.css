@@ -10,7 +10,7 @@ h1.math-heading {
   color: #304a76 !important;
 }
 
-h2.math-heading {
+h2.math-heading > a {
   font-size:1.3rem;
 }
 
