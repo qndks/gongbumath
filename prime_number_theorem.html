@@ -48,11 +48,18 @@
 
 				if (!d.checked) {
 					for (i = 1; i <= l; i += inc) {
-						count.push(result.filter(function(el) {
+						var pix = result.filter(function(el) {
 	                        return el <= i;
-	                    }).length);
+	                    }).length;
+						count.push(pix);
 	                    labels.push(i);
-						log.push(i / Math.log(i));
+						log.push(i / Math.log(i))
+						var lix = -1;
+						var n;
+						for (n = 1; n <= 100; n++) {
+							lix += i / (Math.log(n * i/100) * 100)
+						};
+						li.push(lix);
 					}
 
 					var chart = new Chart(document.getElementById('myChart'), {
@@ -73,6 +80,13 @@
 								pointBorderColor: 'transparent',
 								borderColor: '#aaaaaa',
 								data: log
+							}, {
+								label: "로그 적분",
+								backgroundColor: 'transparent',
+								pointBackgroundColor: 'transparent',
+								pointBorderColor: 'transparent',
+								borderColor: '#a10834',
+								data: li
 							}]
 						},
 						options: {
