@@ -20,8 +20,9 @@
 		<p id="time"></p>
 		<p id="amount"></p>
 		<p id="output"></p>
-		<script src="./public/js/isPrime.js"></script>
 		<script>
+			var arr1 = [];
+			var arr2 = [];
 			var result = [];
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
@@ -30,18 +31,58 @@
 			var d = document.getElementById('display_prime');
 
 			function primer() {
+				arr1 = [];
+				arr2 = [];
+				result = [];
 				o.innerHTML = '';
-				result = [2, 3];
-				var l = Number(lim.value);
+				var l = Number(lim.value) / 6;
 				var i;
 				var t1 = performance.now();
-				for (i = 6; i <= l; i += 6) {
-					if (isPrime(i - 1, result)) result.push(i - 1);
-					if (isPrime(i + 1, result)) result.push(i + 1);
+
+				arr1[0] = 2;
+				arr2[0] = 3;
+
+				for (i = 1; i <= l; i++) {
+					arr1[i] = 6 * i - 1;
+					arr2[i] = 6 * i + 1;
 				}
+
+				for (i = 1; i <= l; i++) {
+					n1 = 6 * i - 1;
+					n2 = 6 * i + 1;
+
+					if (arr1[i] != 0) {
+						for (k = n1 + i; k <= l; k += n1) {
+							arr1[k] = 0;
+						}
+						for (k = n1 - i; k <= l; k += n1) {
+							arr2[k] = 0;
+						}
+					}
+
+					if (arr2[i] != 0) {
+						for (k = n2 + i; k <= l; k += n2) {
+							arr2[k] = 0;
+						}
+						for (k = n2 - i; k <= l; k += n2) {
+							arr1[k] = 0;
+						}
+					}
+				}
+
+				var t2 = performance.now();
+
+				for (i = 1; i <= l; i++) {
+					if (arr1[i] != 0) {
+						result.push(arr1[i]);
+					}
+					if (arr2[i] != 0) {
+						result.push(arr2[i]);
+					}
+				}
+
 				if (d.checked) o.innerHTML = result.join(', ');
 				a.innerHTML = result.length + ' 개';
-				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
 		</script>
