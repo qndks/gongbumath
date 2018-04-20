@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
 		<link rel="stylesheet" href="./public/css/gongbumath.css">
-		<title>소수</title>
+		<title>소인수분해</title>
 	</head>
 	<body>
 		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
 		<h2 class="math-heading">소인수분해</h2>
-		<p><a href="https://gongbu.herokuapp.com/study/소인수분해">소인수분해</a>는 어떤 수를 소수의 곱으로 분해하는 것이다. 아래 프로그램은 두 소수의 곱으로 이루어진 수를 분해하며, 아직 둘다 6n - 1이나 6n + 1일 때밖에 못한다.</p>
+		<p><a href="https://gongbu.herokuapp.com/study/소인수분해">소인수분해</a>는 어떤 수를 소수의 곱으로 분해하는 것이다. 아래 프로그램은 두 소수의 곱으로 이루어진 수를 분해한다.</p>
 		<input id="num" type="text">
 		<input type="button" onclick="primer();" value="완료">
 		<br>
@@ -22,39 +22,70 @@
 			var t = document.getElementById('time');
 			var num = document.getElementById('num');
 			var o = document.getElementById('output');
+
             function isSquare(l) {
                 var i;
-                var n2 = l / 2 + 2
-                for (i = 0; i < n2; i++) if (i * i == l) return true;
+                if ([2, 3, 7, 8].indexOf(l % 10) !== -1) return false;
+				var sq = Math.sqrt(l);
+                if (sq === Math.floor(sq)) return true;
                 return false;
             }
 
 			function primer() {
-				var t1 = performance.now();
                 var n = Number(num.value);
-                var x = (n - 1) / 6;
-                var k;
-                for (k = 1; k < 1000; k++) {
-                    if (isSquare(9 * (k ** 2) + n)) {
-                        r = k;
-                        break;
-                    }
-                }
 
-                var a1 = (3 * x + 1 + Math.sqrt(9 * (r ** 2) + n)) / 18;
-                var a2 = (3 * x + 1 - Math.sqrt(9 * (r ** 2) + n)) / 18;
+				if ((n - 1) % 6 === 0) {
+					var t1 = performance.now();
+	                var x = (n - 1) / 6;
+	                var k;
 
-                console.log(a1, a2)
+	                for (k = 1;; k++) {
+	                    if (isSquare(9 * (k ** 2) + n)) {
+	                        r = k;
+	                        break;
+	                    }
+	                }
 
-                if (Number.isInteger(a1)) var a = a1;
-                else if (Number.isInteger(a2)) var a = a2;
+	                var a1 = (3 * x + 1 + Math.sqrt(9 * (r ** 2) + n)) / 18;
+	                var a2 = (3 * x + 1 - Math.sqrt(9 * (r ** 2) + n)) / 18;
 
-                var m1 = (Math.abs(x - 6 * a) - r) / 2;
-                var m2 = (Math.abs(x - 6 * a) + r) / 2;
+	                if (Number.isInteger(a1)) var a = a1;
+	                else if (Number.isInteger(a2)) var a = a2;
 
-                if (x - 6 * a > 0) o.innerHTML = (6 * m1 + 1) + ' × ' + (6 * m2 + 1);
-                else o.innerHTML = (6 * m1 - 1) + ' × ' + (6 * m2 - 1);
-                var t2 = performance.now();
+	                var m1 = (Math.abs(x - 6 * a) - r) / 2;
+	                var m2 = a / m1;
+
+					if (x - 6 * a > 0) o.innerHTML = (6 * m1 + 1) + ' × ' + (6 * m2 + 1);
+					else o.innerHTML = (6 * m1 - 1) + ' × ' + (6 * m2 - 1);
+	                var t2 = performance.now();
+				} else if ((n + 1) % 6 === 0) {
+					var t1 = performance.now();
+					var x = (n + 1) / 6;
+
+	                var k;
+
+	                for (k = 1;; k++) {
+	                    if (isSquare(9 * (k ** 2) - n)) {
+	                        r = k;
+	                        break;
+	                    }
+	                }
+
+	                var a1 = (3 * x - 1 + Math.sqrt(9 * (r ** 2) - n)) / 18;
+	                var a2 = (3 * x - 1 - Math.sqrt(9 * (r ** 2) - n)) / 18;
+
+	                if (Number.isInteger(a1)) var a = a1;
+	                else if (Number.isInteger(a2)) var a = a2;
+
+	                var m1 = (-1 * Math.abs(x - 6 * a) + r) / 2;
+	                var m2 = a / m1;
+
+					if (x - 6 * a < 0) o.innerHTML = (6 * m1 - 1) + ' × ' + (6 * m2 + 1);
+					o.innerHTML = (6 * m1 + 1) + ' × ' + (6 * m2 - 1);
+	                var t2 = performance.now();
+				}
+				console.log(r)
+
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
 		</script>
