@@ -25,6 +25,8 @@
 
             function isSquare(l) {
                 var i;
+				var hex = l.toString(16).toString().split('').pop();
+				if (hex === '2' || hex === '3' || hex === "5" || hex === '6' || hex === '7' || hex === '8') return false;
 				var sq = Math.sqrt(l);
                 if (sq === Math.floor(sq)) return true;
                 return false;
