@@ -34,6 +34,12 @@
 			function primer() {
                 var n = Number(num.value);
 
+				if (n === 1) {
+					o.innerHTML = '에러';
+					var t1 = performance.now();
+					var t2 = performance.now();
+				}
+
 				if ((n - 1) % 6 === 0) {
 					var t1 = performance.now();
 	                var x = (n - 1) / 6;
@@ -89,10 +95,9 @@
 	                var t2 = performance.now();
 				} else {
 					o.innerHTML = '에러';
+					var t1 = performance.now();
 					var t2 = performance.now();
 				}
-
-				console.log(r)
 
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
