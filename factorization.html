@@ -48,7 +48,7 @@
 					var t1 = performance.now();
 
 					for (i = new Big(2); i.lte(n.sqrt().round(0, 3)); i = i.plus(1)) {
-						if ((i.mod(6).toString() !== "5" && i.mod(6).toString() !== "1") && i.gt(3)) continue;
+						if ((!i.mod(6).eq(5) && !i.mod(6).eq(1)) && i.gt(3)) continue;
 						if (n.mod(i).eq(0)) {
 							n = n.div(i)
 							p.push(i);
