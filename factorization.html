@@ -17,6 +17,7 @@
 		<br>
 		<p id="time"></p>
 		<p id="output"></p>
+		<script src="./public/js/big.min.js"></script>
 		<script>
             var r;
 			var t = document.getElementById('time');
@@ -33,8 +34,34 @@
 
 				var n = Number(num.value);
 
-				if (n !== Math.floor(n) || n < 0 || n > 9007199254740991) {
+				if (n !== Math.floor(n) || n < 0) {
 					alert('수가 9007199254740991 보다 크거나, 정수가 아니거나, 0 보다 작습니다.');
+					return;
+				}
+
+				if (n > 9007199254740991) {
+					n = new Big(num.value);
+					var sqn = n.sqrt().floor();
+					var i;
+					var k;
+
+					var t1 = performance.now();
+
+					for (i = new Big(2); i.lte(n.sqrt().ceil()); i = i.plus(1)) {
+						if ((i.mod(6).toString() !== "5" && i.mod(6).toString() !== "1") && i.gt(3)) continue;
+						if (n.mod(i).eq(0)) {
+							n = n.div(i)
+							p.push(i);
+							i = new Big(1);
+						}
+					}
+
+					if (!n.eq(1)) p.push(n);
+
+					o.innerHTML = p.sort(function(a, b) {return Number(a.minus(b).toString())}).join(' * ');
+					console.log(new Big(eval(o.innerHTML)).eq(new Big(num.value)));
+					var t2 = performance.now();
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 					return;
 				}
 
@@ -45,7 +72,7 @@
 				var t1 = performance.now();
 
 				for (i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
-					if (i % 6 !== (5 || 1) && i > 3) continue;
+					if ((i % 6 !== 5 && i % 6 !== 1) && i > 3) continue;
 					if (n % i === 0) {
 						n /= i;
 						p.push(i);
