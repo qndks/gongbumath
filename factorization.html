@@ -34,33 +34,23 @@
 				var n = Number(num.value);
 				var sqn = Math.floor(Math.sqrt(n));
 				var i;
-				var pr = [];
-				for (i = 0; i <= Math.ceil(Math.sqrt(n)); i++) {
-					pr.push(i);
-				}
+				var k;
 
 				var t1 = performance.now();
 
 				for (i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
-					if (pr[i] === 0) continue;
+					if (i % 6 !== (5 && 1) && i > 3) continue;
 					if (n % i === 0) {
 						n /= i;
 						p.push(i);
 						i = 1;
-						pr[i] = 0;
-						continue;
-					}
-					if (i === Math.floor(Math.sqrt(n)) && n !== 1) {
-						p.push(n);
 					}
 				}
 
-				if (p.length === 0) p[0] = n;
+				if (n !== 1) p.push(n);
 
 				o.innerHTML = p.sort(function(a, b) {return a - b}).join(' * ');
-
 				var t2 = performance.now();
-
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
 		</script>
