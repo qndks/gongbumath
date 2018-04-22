@@ -25,7 +25,7 @@
 
             function isSquare(l) {
 				var sq = Math.sqrt(l);
-				return (sq === Math.floor(sq)) // && (l % 10 !== 2 || 3 || 7 || 8);
+				return (sq === Math.floor(sq));
             }
 
 			function primer() {
@@ -39,7 +39,7 @@
 				var t1 = performance.now();
 
 				for (i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
-					if (i % 6 !== (5 && 1) && i > 3) continue;
+					if (i % 6 !== (5 || 1) && i > 3) continue;
 					if (n % i === 0) {
 						n /= i;
 						p.push(i);
@@ -50,6 +50,7 @@
 				if (n !== 1) p.push(n);
 
 				o.innerHTML = p.sort(function(a, b) {return a - b}).join(' * ');
+				console.log(eval(o.innerHTML) === Number(num.value));
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
