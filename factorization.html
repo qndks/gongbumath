@@ -41,13 +41,13 @@
 
 				if (n > 9007199254740991) {
 					n = new Big(num.value);
-					var sqn = n.sqrt().floor();
+					var sqn = n.sqrt().round(0, 0);
 					var i;
 					var k;
 
 					var t1 = performance.now();
 
-					for (i = new Big(2); i.lte(n.sqrt().ceil()); i = i.plus(1)) {
+					for (i = new Big(2); i.lte(n.sqrt().round(0, 3)); i = i.plus(1)) {
 						if ((i.mod(6).toString() !== "5" && i.mod(6).toString() !== "1") && i.gt(3)) continue;
 						if (n.mod(i).eq(0)) {
 							n = n.div(i)
