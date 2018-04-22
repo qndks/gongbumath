@@ -32,6 +32,9 @@
 				var p = [];
 
 				var n = Number(num.value);
+
+				if (n !== Math.floor(n) || n < 0) return;
+
 				var sqn = Math.floor(Math.sqrt(n));
 				var i;
 				var k;
