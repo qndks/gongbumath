@@ -17,17 +17,13 @@
 		<br>
 		<p id="time"></p>
 		<p id="output"></p>
+		<script src="./public/js/Miller_Rabin_Primality_Test.js"></script>
 		<script src="./public/js/big.min.js"></script>
 		<script>
             var r;
 			var t = document.getElementById('time');
 			var num = document.getElementById('num');
 			var o = document.getElementById('output');
-
-            function isSquare(l) {
-				var sq = Math.sqrt(l);
-				return (sq === Math.floor(sq));
-            }
 
 			function primer() {
 				var p = [];
@@ -41,39 +37,57 @@
 
 				if (n > 9007199254740991) {
 					n = new Big(num.value);
-					var sqn = n.sqrt().round(0, 0);
+
+					if (mrpt(n, 20) === '아마 소수일 것임.') {
+						o.innerHTML = n.toString();
+						t.innerHTML = '0 초';
+						return;
+					}
+
+					var sq = n.sqrt();
+
+					if (sq.eq(sq.round(0, 2)) && mrpt(sq, 20) === '아마 소수일 것임.') {
+						o.innerHTML = sq.toString() + ' * ' + sq.toString();
+						t.innerHTML = '0 초';
+						return;
+					}
+
 					var i;
 					var k;
 
 					var t1 = performance.now();
 
-					for (i = new Big(2); i.lte(n.sqrt().round(0, 3)); i = i.plus(1)) {
+					for (i = new Big(2); i.pow(2).lte(n); i = i.plus(1)) {
 						if ((!i.mod(6).eq(5) && !i.mod(6).eq(1)) && i.gt(3)) continue;
+
 						if (n.mod(i).eq(0)) {
-							n = n.div(i)
+							n = n.div(i);
+
 							p.push(i);
+
+							if (mrpt(n, 20) === '아마 소수일 것임.') break;
 							i = new Big(1);
+							continue;
 						}
 					}
 
 					if (!n.eq(1)) p.push(n);
 
 					o.innerHTML = p.sort(function(a, b) {return Number(a.minus(b).toString())}).join(' * ');
-					console.log(new Big(eval(o.innerHTML)).eq(new Big(num.value)));
 					var t2 = performance.now();
 					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 					return;
 				}
 
-				var sqn = Math.floor(Math.sqrt(n));
 				var i;
 				var k;
 
 				var t1 = performance.now();
 
-				for (i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+				for (i = 2; i * i <= n; i++) {
 					if ((i % 6 !== 5 && i % 6 !== 1) && i > 3) continue;
 					if (n % i === 0) {
+						console.log(i);
 						n /= i;
 						p.push(i);
 						i = 1;
