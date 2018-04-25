@@ -46,7 +46,7 @@
 
 					var sq = n.sqrt();
 
-					if (sq.eq(sq.round(0, 2)) && mrpt(sq, 20) === '아마 소수일 것임.') {
+					if (sq.eq(sq.round(0, 2)) && mrpt(sq, 10) === '아마 소수일 것임.') {
 						o.innerHTML = sq.toString() + ' * ' + sq.toString();
 						t.innerHTML = '0 초';
 						return;
@@ -65,7 +65,7 @@
 
 							p.push(i);
 
-							if (mrpt(n, 20) === '아마 소수일 것임.') break;
+							if (mrpt(n, 10) === '아마 소수일 것임.') break;
 							i = new Big(1);
 							continue;
 						}
