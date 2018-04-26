@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<title>밀러-라빈 소수판별법</title>
+	</head>
+	<body>
+		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		<h2 class="math-heading">밀러-라빈 소수판별법</h2>
+		<p><a href="https://gongbu.herokuapp.com/study/밀러-라빈 소수판별법">밀러-라빈 소수판별법</a>은 어떤 수가 소수인지 판별하는 확률적 알고리즘이다.</p>
+		<input id="num" type="text">
+		<input type="button" onclick="primer();" value="완료">
+		<br>
+		<br>
+		<p id="time"></p>
+		<p id="output"></p>
+		<script src="./public/js/Miller_Rabin_Primality_Test.js"></script>
+		<script src="./public/js/big.min.js"></script>
+		<script>
+            var r;
+			var t = document.getElementById('time');
+			var num = document.getElementById('num');
+			var o = document.getElementById('output');
+
+			function primer() {
+				var t1 = performance.now();
+
+				var n = Number(num.value);
+
+				if (n !== Math.floor(n) || n < 0) {
+					alert('수가 9007199254740991 보다 크거나, 정수가 아니거나, 0 보다 작습니다.');
+					return;
+				}
+
+				n = new Big(num.value);
+
+				o.innerHTML = mrpt(n, 20);
+				var t2 = performance.now();
+				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+			}
+		</script>
+	</body>
+</html>
