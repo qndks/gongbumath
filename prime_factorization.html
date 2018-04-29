@@ -30,6 +30,12 @@
 			var t = document.getElementById('time');
 			var num = document.getElementById('num');
 			var o = document.getElementById('output');
+			var qs = (new URL(document.location)).searchParams;
+
+			if (qs.get('num')) {
+				num.value = qs.get('num');
+				primer();
+			}
 
 			function primer() {
 				var p = [];
