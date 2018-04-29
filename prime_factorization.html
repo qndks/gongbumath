@@ -14,12 +14,15 @@
 		</header>
 		<h2 class="math-heading">소인수분해</h2>
 		<p><a href="https://gongbu.herokuapp.com/study/소인수분해">소인수분해</a>는 어떤 수를 소수의 곱으로 분해하는 것이다.</p>
-		<input id="num" type="text">
+		<input id="num" type="text" value="12">
 		<input type="button" onclick="primer();" value="완료">
 		<br>
 		<br>
-		<p id="time"></p>
-		<p id="output"></p>
+		<p id="time">0.003 초</p>
+		<p id="output">2 * 2 * 3</p>
+		<hr>
+		<div class="math-footer" w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
 		<script src="./public/js/Miller_Rabin_Primality_Test.js"></script>
 		<script src="./public/js/big.min.js"></script>
 		<script>
