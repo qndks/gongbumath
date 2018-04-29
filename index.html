@@ -5,23 +5,14 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
 		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script type="text/javascript" src="./public/js/include.js"></script>
 		<title>공부:수학</title>
 	</head>
 	<body>
-		<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
-		<h2 class="math-heading">정수론</h2>
-	    <ul>
-	        <li><a href="./prime_number.html">소수</a></li>
-	        <li><a href="./prime_number_theorem.html">소수 정리</a></li>
-	        <li><a href="./prime_twin.html">쌍둥이 소수</a></li>
-	        <li><a href="./prime_twin_chart.html">쌍둥이 소수 분포</a></li>
-	        <li><a href="./prime_factorization.html">소인수분해</a></li>
-	        <li><a href="./miller_rabin_primality_test.html">밀러-라빈 소수판별법</a></li>
-	    </ul>
-		<h2 class="math-heading">수열</h2>
-		<ul>
-			<li><a href="./harmonic_series.html">조화급수</a></li>
-			<li><a href="./basel_problem.html">바젤 문제</a></li>
-		</ul>
+		<header>
+			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		</header>
+		<div w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
 	</body>
 </html>
