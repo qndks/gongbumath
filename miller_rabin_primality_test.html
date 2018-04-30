@@ -44,7 +44,7 @@
 				n = new Big(num.value);
 
 				o.innerHTML = mrpt(n, 20);
-				if (o.innerHTML = '합성수') o.innerHTML += ' <a href="./prime_factorization.html?num=' + n + '">(소인수분해 하기.)</a>'
+				if (o.innerHTML === '합성수') o.innerHTML += ' <a href="./prime_factorization.html?num=' + n + '">(소인수분해 하기.)</a>'
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
