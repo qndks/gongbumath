@@ -13,7 +13,7 @@
 			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
 		</header>
 		<h2 class="math-heading">소수 찾기</h2>
-		<p>3 보다 큰 모든 소수는 6n ± 1 의 꼴로 나타낼 수 있다.</p>
+		<p>에라토스테네스의 체는 소수를 찾는 알고리즘 중 하나이다.</p>
 		<input id="lim" type="text" value="10000">
 		<input type="button" onclick="primer();" value="완료">
 		<br>
@@ -27,9 +27,8 @@
 		<div class="math-footer" w3-include-html="./list.html"></div>
 		<script>includeHTML();</script>
 		<script>
-			var arr1 = [];
-			var arr2 = [];
 			var result = [];
+			var p = [];
 			var t = document.getElementById('time');
 			var lim = document.getElementById('lim');
 			var o = document.getElementById('output');
@@ -37,58 +36,35 @@
 			var d = document.getElementById('display_prime');
 
 			function primer() {
-				arr1 = [];
-				arr2 = [];
 				result = [];
+				p = [];
 				o.innerHTML = '';
-				var l = Number(lim.value) / 6;
-				var i;
+				var l = Number(lim.value);
+				var i, j;
 				var t1 = performance.now();
 
-				arr1[0] = 2;
-				arr2[0] = 3;
-
-				for (i = 1; i <= l; i++) {
-					arr1[i] = 6 * i - 1;
-					arr2[i] = 6 * i + 1;
+				for (i = 0; i <= l; i++) {
+					result.push(i);
 				}
 
-				for (i = 1; i <= l; i++) {
-					n1 = 6 * i - 1;
-					n2 = 6 * i + 1;
-
-					if (arr1[i] != 0) {
-						for (k = n1 + i; k <= l; k += n1) {
-							arr1[k] = 0;
-						}
-						for (k = n1 - i; k <= l; k += n1) {
-							arr2[k] = 0;
+				for (i = 2; i <= l; i++) {
+					if (result[i] !== 0) {
+						for (j = i + i; j <= l; j += i) {
+							result[j] = 0;
 						}
 					}
+				}
 
-					if (arr2[i] != 0) {
-						for (k = n2 + i; k <= l; k += n2) {
-							arr2[k] = 0;
-						}
-						for (k = n2 - i; k <= l; k += n2) {
-							arr1[k] = 0;
-						}
+				for (i = 2; i < l; i++) {
+					if (result[i] !== 0) {
+						p.push(result[i]);
 					}
 				}
 
 				var t2 = performance.now();
 
-				for (i = 0; i <= l; i++) {
-					if (arr1[i] != 0) {
-						result.push(arr1[i]);
-					}
-					if (arr2[i] != 0) {
-						result.push(arr2[i]);
-					}
-				}
-
-				if (d.checked) o.innerHTML = result.join(', ');
-				a.innerHTML = result.length + ' 개';
+				if (d.checked) o.innerHTML = p.join(', ');
+				a.innerHTML = p.length + ' 개';
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
 		</script>
