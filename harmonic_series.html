@@ -16,20 +16,19 @@
 		<h2 class="math-heading">조화급수</h2>
 		<p><a href="https://gongbu.herokuapp.com/study/조화급수">조화급수</a>는 10000번째 항까지 더해도 10을 못넘지만, 수렴한다고 알려져있다.</p>
 		<canvas id="myChart"></canvas>
+		<hr>
+		<div class="math-footer" w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
 		<script>
 			var chart;
 	        var h = [];
 	        var labels = [];
-			var ln = [];
-			var lnp = [];
 	        var c = 0;
 
 	        for (var i = 1; i <= 10000; i++) {
 		        h.push(c + (1 / i));
 		        c += 1 / i;
 		        labels.push(i);
-				ln.push(Math.log(i));
-				lnp.push(Math.log(i) + 1);
 	        }
 
 			chart = new Chart(document.getElementById('myChart'), {
@@ -43,20 +42,6 @@
 			            pointBackgroundColor: 'transparent',
 			            pointBorderColor: 'transparent',
 			            data: h
-			        }, {
-			            label: "자연로그",
-			            borderColor: '#ee8181',
-			            backgroundColor: 'transparent',
-			            pointBackgroundColor: 'transparent',
-			            pointBorderColor: 'transparent',
-			            data: ln
-			        }, {
-			            label: "자연로그 + 1",
-			            borderColor: '#004792',
-			            backgroundColor: 'transparent',
-			            pointBackgroundColor: 'transparent',
-			            pointBorderColor: 'transparent',
-			            data: lnp
 			        }]
 				},
 				options: {
