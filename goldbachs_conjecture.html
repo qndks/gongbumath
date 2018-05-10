@@ -33,6 +33,7 @@
 			function primer() {
 				var t1 = performance.now();
             	o.innerHTML = '';
+				var res = [];
 				var n = Number(lim.value);
 
 				if (n !== Math.floor(n) || n < 4) {
@@ -46,7 +47,9 @@
 				}
 
                 if (n > 9007199254740991) {
-
+					alert('수가 너무 커 아직 지원 안할꺼야 빼애액');
+					o.innerHTML = '에러 남';
+					return;
 				}
 
 				if (n % 2 !== 0) {
@@ -58,25 +61,21 @@
 				var i;
 				var m = n / 2;
 
-				if (mrpt(m, 20) === '아마 소수일 것임.') {
-					var t2 = performance.now();
-					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
-					o.innerHTML = m + ' + ' + m;
-					return;
-				}
-
-				for (i = 3; i < m; i += 2) {
+				for (i = 3; i <= m; i += 2) {
 					if (mrpt(i, 20) === '아마 소수일 것임.' && mrpt(n - i, 20) === '아마 소수일 것임.') {
-						var t2 = performance.now();
-						t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
-						o.innerHTML = i + ' + ' + (n - i);
-						return;
+						res.push(i + ' + ' + (n - i));
 					}
 				}
 
-				var t2 = performance.now();
-				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
-				o.innerHTML = '골드바흐의 추측에는 반례가 있다. 빨리 수학계에 보고해라.';
+				if (res.length === 0) {
+					var t2 = performance.now();
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = '골드바흐의 추측에는 반례가 있다. 빨리 수학계에 보고해라.';
+				} else {
+					var t2 = performance.now();
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = res.join(', ');
+				}
 			}
 		</script>
 	</body>
