@@ -46,7 +46,7 @@
 					return;
 				}
 
-                if (n > 9007199254740991) {
+                if (n > 300000) {
 					alert('수가 너무 커 아직 지원 안할꺼야 빼애액');
 					o.innerHTML = '에러 남';
 					return;
@@ -62,9 +62,9 @@
 				var m = n / 2;
 
 				for (i = 3; i <= m; i += 2) {
-					if (mrpt(i, 20) === '아마 소수일 것임.' && mrpt(n - i, 20) === '아마 소수일 것임.') {
-						res.push(i + ' + ' + (n - i));
-					}
+					if (mrpt(i, 20) !== '아마 소수일 것임.') continue;
+					if (mrpt(n - i, 20) !== '아마 소수일 것임.') continue;
+					res.push(i + ' + ' + (n - i));
 				}
 
 				if (res.length === 0) {
