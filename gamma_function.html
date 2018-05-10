@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script type="text/javascript" src="./public/js/include.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<title>감마함수</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		</header>
+		<h2 class="math-heading">감마함수</h2>
+		<p><a href="https://gongbu.herokuapp.com/study/감마함수">감마함수</a>는 다음 계승함수를 확장한 함수이다.</p>
+		<canvas id="myChart"></canvas>
+		<hr>
+		<div class="math-footer" w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
+		<script>
+			var chart;
+	        var h = [];
+	        var labels = [];
+	        var c = 1;
+
+
+	        for (var i = 1; i <= 5; i++) {
+		        h.push(c);
+		        c = c * (i + 1)
+		        labels.push(i);
+	        }
+
+			chart = new Chart(document.getElementById('myChart'), {
+				type: 'line',
+				data: {
+					labels: labels,
+					datasets: [{
+			            label: "계승함수",
+			            borderColor: '#000000',
+			            backgroundColor: 'transparent',
+			            pointBackgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: h
+			        }]
+				},
+				options: {
+					elements: {
+					  	line: {
+							tension: 0
+					  	}
+					},
+					animation: {
+						duration: 0
+					}
+  				}
+			});
+		</script>
+	</body>
+</html>
