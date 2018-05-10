@@ -38,6 +38,11 @@
 				if (n !== Math.floor(n) || n < 4) {
 					alert('정수가 아니거나, 4 보다 작습니다.');
 					return;
+				} else if (n === 4) {
+					var t2 = performance.now();
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = '2 + 2';
+					return;
 				}
 
                 if (n > 9007199254740991) {
@@ -60,7 +65,7 @@
 					return;
 				}
 
-				for (i = 2; i < m; i++) {
+				for (i = 3; i < m; i += 2) {
 					if (mrpt(i, 20) === '아마 소수일 것임.' && mrpt(n - i, 20) === '아마 소수일 것임.') {
 						var t2 = performance.now();
 						t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
