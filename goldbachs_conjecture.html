@@ -33,7 +33,7 @@
 			var lim = document.getElementById('lim');
 			var o = document.getElementById('output');
 			var a = document.getElementById('amount');
-			var d = document.getElementById('display_prime');
+			var d = document.getElementById('sub');
 
 			function primer() {
 				var t1 = performance.now();
@@ -72,7 +72,6 @@
 						if (mrpt(i, 20) !== '아마 소수일 것임.') continue;
 						if (mrpt(n - i, 20) !== '아마 소수일 것임.') continue;
 						res.push(i + ' + ' + (n - i));
-						break;
 					}
 				} else {
 					for (i = 3; i <= m; i += 2) {
