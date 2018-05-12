@@ -7,8 +7,11 @@ html {
 }
 
 body {
+    margin:0;
+    box-sizing:border-box;
     position:relative;
-    min-height:100%;
+    min-height:calc(100% - 16px);
+    padding:8px;
     padding-bottom:15rem;
 }
 
@@ -47,4 +50,5 @@ a.math-heading-link {
     right:0;
     bottom: 0;
     left: 0;
+    padding:8px;
 }
