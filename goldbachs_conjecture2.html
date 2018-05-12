@@ -56,9 +56,10 @@
 
 				if (l > 50000) {
 					alert('5만까진 계산해뒀는데 그 이상은 오래걸려.');
+					return;
 				}
 
-				for (i = 40002; i <= l; i += 2) {
+				for (i = 50002; i <= l; i += 2) {
 					count = 0;
 					var k = i / 2;
 					for (j = 3; j <= k; j += 2) {
@@ -71,23 +72,22 @@
 				}
 
 
-				// chart = new Chart(document.getElementById('myChart'), {
-				// 	type: 'line',
-				// 	data: {
-				// 		labels: labels,
-				// 		datasets: [{
-				// 		  	label: "골드바흐의 추측",
-				// 			backgroundColor: '#000000',
-         		// 			showLine: false,
-				// 			pointRadius: 1,
-				// 		 	data: res.slice(0, l / 2 - 1)
-				// 		}]
-				// 	}
-				// });
+				chart = new Chart(document.getElementById('myChart'), {
+					type: 'line',
+					data: {
+						labels: labels,
+						datasets: [{
+						  	label: "골드바흐의 추측",
+							backgroundColor: '#000000',
+         					showLine: false,
+							pointRadius: 1,
+						 	data: res.slice(0, l / 2 - 1)
+						}]
+					}
+				});
 
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
-				document.getElementById('output').innerHTML = res.join(', ');
 			}
 		</script>
 		<script>includeHTML();</script>
