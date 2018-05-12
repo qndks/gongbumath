@@ -2,6 +2,11 @@
   padding-bottom:5px;
 }
 
+body {
+    position:relative;
+    padding-bottom: 15rem;
+}
+
 h1.math-heading {
   font-size:1.6rem;
 }
@@ -29,4 +34,12 @@ a:hover {
 
 a.math-heading-link {
   color:#000000;
+}
+
+.math-footer {
+    position:absolute;
+    right:0;
+    bottom: 0;
+    left: 0;
+    padding: 2px;
 }
