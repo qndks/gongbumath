@@ -20,16 +20,10 @@
 		<script>includeHTML();</script>
 		<script>
             var f = [];
-            function factorial (n) {
-                if (n === 0 || n === 1) return 1;
-                if (f[n] > 0) return f[n];
-                return f[n] = factorial(n-1) * n;
-            } ​
 
 			var chart;
 	        var f1 = [];
             var f2 = [];
-            var f3 = [];
 	        var labels = [];
 			var pi = [];
             var sq2 = Math.sqrt(2);
@@ -46,7 +40,6 @@
 
 		        f1.push(4 * c);
                 f2.push(2 * a);
-                f3.push(1 / (2 * sq2 / (9801 * Math.pow(factorial(i), 4) * )));
 
 		        labels.push(i);
 				pi.push(Math.PI);
