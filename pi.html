@@ -24,10 +24,12 @@
 			var chart;
 	        var f1 = [];
             var f2 = [];
+			var f3 = [];
 	        var labels = [];
 			var pi = [];
             var sq2 = Math.sqrt(2);
 	        var c = 0;
+			var b = 0;
 			var a = 1;
 			var i;
 
@@ -35,11 +37,14 @@
                 if (i % 2 === 1) c += 1 / (2 * i - 1);
                 else c -= 1 / (2 * i - 1);
 
+				b += 1 / Math.pow(i, 2);
+
                 if (i % 2 === 1) a *= (i + 1) / i;
                 else a *= i / (i + 1);
 
 		        f1.push(4 * c);
                 f2.push(2 * a);
+				f3.push(Math.sqrt(6 * b));
 
 		        labels.push(i);
 				pi.push(Math.PI);
@@ -70,6 +75,13 @@
 			            backgroundColor: 'transparent',
 			            pointBorderColor: 'transparent',
 			            data: f2
+			        }, {
+			            label: "basel",
+						borderWidth: 2,
+			            borderColor: '#88aa11',
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: f3
 			        }]
 				},
 				options: {
