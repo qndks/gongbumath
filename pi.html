@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script type="text/javascript" src="./public/js/include.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<title>자연상수</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		</header>
+		<h2 class="math-heading">원주율</h2>
+		<p><a href="https://gongbu.herokuapp.com/study/원주율">원주율</a>를 구하는 식은 여러가지가 있다. 수렴 속도가 가장 빠른게 뭔지 알아보자.</p>
+		<canvas id="myChart"></canvas>
+		<div class="math-footer" w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
+		<script>
+            var f = [];
+            function factorial (n) {
+                if (n === 0 || n === 1) return 1;
+                if (f[n] > 0) return f[n];
+                return f[n] = factorial(n-1) * n;
+            } ​
+
+			var chart;
+	        var f1 = [];
+            var f2 = [];
+            var f3 = [];
+	        var labels = [];
+			var pi = [];
+            var sq2 = Math.sqrt(2);
+	        var c = 0;
+			var a = 1;
+			var i;
+
+	        for (i = 1; i <= 100; i++) {
+                if (i % 2 === 1) c += 1 / (2 * i - 1);
+                else c -= 1 / (2 * i - 1);
+
+                if (i % 2 === 1) a *= (i + 1) / i;
+                else a *= i / (i + 1);
+
+		        f1.push(4 * c);
+                f2.push(2 * a);
+                f3.push(1 / (2 * sq2 / (9801 * Math.pow(factorial(i), 4) * )));
+
+		        labels.push(i);
+				pi.push(Math.PI);
+	        }
+
+			chart = new Chart(document.getElementById('myChart'), {
+				type: 'line',
+				data: {
+					labels: labels,
+					datasets: [{
+			            label: "pi",
+			            borderColor: '#000000',
+						borderWidth: 2,
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: pi
+			        }, {
+			            label: "4(1/1 - 1/3 + 1/5 + ...)",
+			            borderColor: '#ee3355',
+						borderWidth: 2,
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: f1
+			        }, {
+			            label: "2 * 2/1 * 2/3 * 4/3 * 4/5 * ...",
+						borderWidth: 2,
+			            borderColor: '#5533ee',
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: f2
+			        }]
+				},
+				options: {
+					elements: {
+					  	line: {
+							tension: 0
+					  	}
+					},
+					animation: {
+						duration: 0
+					}
+  				}
+			});
+		</script>
+	</body>
+</html>
