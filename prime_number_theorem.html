@@ -33,9 +33,9 @@
 			var result;
 			var count;
 			var labels;
+			var chart;
 
 			function primer() {
-				var chart;
 				result = [2, 3];
 				var l = Number(lim.value);
 				var i;
@@ -67,8 +67,9 @@
 						};
 						li.push(lix);
 					}
+					if (chart) {chart.destroy();}
 
-					var chart = new Chart(document.getElementById('myChart'), {
+					chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
 							labels: labels,
@@ -124,7 +125,9 @@
 						li.push(pix / lix);
 					}
 
-					var chart = new Chart(document.getElementById('myChart'), {
+					if (chart) {chart.destroy();}
+
+					chart = new Chart(document.getElementById('myChart'), {
 						type: 'line',
 						data: {
 							labels: labels,
