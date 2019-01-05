@@ -7,27 +7,34 @@
 		<link rel="stylesheet" href="./public/css/gongbumath.css">
 		<script type="text/javascript" src="./public/js/include.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-		<title>조화급수</title>
+		<title>자연상수</title>
 	</head>
 	<body>
 		<header>
 			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
 		</header>
-		<h2 class="math-heading">조화급수</h2>
-		<p><a href="https://gongbu.herokuapp.com/study/조화급수">조화급수</a>는 10000번째 항까지 더해도 10을 못넘지만, 수렴한다고 알려져있다.</p>
+		<h2 class="math-heading">자연상수</h2>
+		<p><a href="https://gongbu.herokuapp.com/study/자연상수">자연상수</a>를 구하는 식은 여러가지가 있다. 수렴 속도가 가장 빠른게 뭔지 알아보자.</p>
 		<canvas id="myChart"></canvas>
 		<div class="math-footer" w3-include-html="./list.html"></div>
 		<script>includeHTML();</script>
 		<script>
 			var chart;
-	        var h = [];
+	        var f1 = [];
+            var f2 = [];
 	        var labels = [];
-	        var c = 0;
+			var e = [];
+	        var c = 1;
+			var a = 1;
+			var i;
 
-	        for (var i = 1; i <= 10000; i++) {
-		        h.push(c + (1 / i));
-		        c += 1 / i;
+	        for (i = 1; i <= 20; i++) {
+				c = c * i;
+				a += (1 / c);
+		        f1.push(Math.pow(1 + (1 / i), i));
+                f2.push(a);
 		        labels.push(i);
+				e.push(Math.E);
 	        }
 
 			chart = new Chart(document.getElementById('myChart'), {
@@ -35,12 +42,26 @@
 				data: {
 					labels: labels,
 					datasets: [{
-			            label: "조화급수",
+			            label: "e",
 			            borderColor: '#000000',
+						borderWidth: 2,
 			            backgroundColor: 'transparent',
-			            pointBackgroundColor: 'transparent',
 			            pointBorderColor: 'transparent',
-			            data: h
+			            data: e
+			        }, {
+			            label: "(1 + 1 / n)^n",
+			            borderColor: '#ee3355',
+						borderWidth: 2,
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: f1
+			        }, {
+			            label: "1/1 + 1/4 + 1/9 + ...",
+						borderWidth: 2,
+			            borderColor: '#5533ee',
+			            backgroundColor: 'transparent',
+			            pointBorderColor: 'transparent',
+			            data: f2
 			        }]
 				},
 				options: {

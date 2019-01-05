@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="shortcut icon" href="./public/favicon/favicon.ico">
+		<link rel="stylesheet" href="./public/css/gongbumath.css">
+		<script type="text/javascript" src="./public/js/include.js"></script>
+		<title>골드바흐의 추측</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="math-heading"><a class="math-heading-link" href="./index.html">공부수학</a></h1>
+		</header>
+		<h2 class="math-heading">골드바흐의 추측</h2>
+		<p><a href="https://gongbu.herokuapp.com/study/골드바흐의 추측">골드바흐의 추측</a>은 3보다 큰 모든 짝수를 두 소수의 합으로 나타낼 수 있다는 추측이다.</p>
+		<input id="lim" type="text" value="4">
+		<input type="button" onclick="primer();" value="완료">
+		<br>
+		<br>
+		<input type="checkbox" id="sub">
+		<label for="sub">1 개만 보여주기</label>
+	  	<p id="time">0.003 초</p>
+		<p id="amount">1 개</p>
+	  	<p id="output">2 + 2</p>
+		<div class="math-footer" w3-include-html="./list.html"></div>
+		<script>includeHTML();</script>
+		<script src="./public/js/isPrime.js"></script>
+		<script src="./public/js/Miller_Rabin_Primality_Test.js"></script>
+		<script>
+			var t = document.getElementById('time');
+			var lim = document.getElementById('lim');
+			var o = document.getElementById('output');
+			var a = document.getElementById('amount');
+			var d = document.getElementById('sub');
+
+			function primer() {
+				var t1 = performance.now();
+            	o.innerHTML = '';
+				var res = [];
+				var n = Number(lim.value);
+
+				if (n !== Math.floor(n) || n < 4) {
+					alert('정수가 아니거나, 4 보다 작습니다.');
+					return;
+				} else if (n === 4) {
+					var t2 = performance.now();
+					a.innerHTML = '1 개'
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = '2 + 2';
+					return;
+				}
+
+                if (n > 1000000) {
+					alert('수가 너무 커 아직 지원 안할꺼야 빼애액');
+					o.innerHTML = '에러 남';
+					return;
+				}
+
+				if (n % 2 !== 0) {
+					alert('수가 짝수가 아닙니다.');
+					o.innerHTML = n;
+					return;
+				}
+
+				var i;
+				var m = n / 2;
+
+				if (d.checked) {
+					for (i = 3; i <= m; i += 2) {
+						if (mrpt(i, 20) !== '아마 소수일 것임.') continue;
+						if (mrpt(n - i, 20) !== '아마 소수일 것임.') continue;
+						res.push(i + ' + ' + (n - i));
+						break;
+					}
+				} else {
+					for (i = 3; i <= m; i += 2) {
+						if (mrpt(i, 20) !== '아마 소수일 것임.') continue;
+						if (mrpt(n - i, 20) !== '아마 소수일 것임.') continue;
+						res.push(i + ' + ' + (n - i));
+					}
+				}
+
+				if (res.length === 0) {
+					var t2 = performance.now();
+					a.innerHTML = res.length + ' 개';
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = '골드바흐의 추측에는 반례가 있다. 빨리 수학계에 보고해라.';
+				} else {
+					var t2 = performance.now();
+					a.innerHTML = res.length + ' 개';
+					t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
+					o.innerHTML = res.join(', ');
+				}
+			}
+		</script>
+	</body>
+</html>

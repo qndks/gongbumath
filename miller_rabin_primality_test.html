@@ -14,14 +14,13 @@
 		</header>
 		<h2 class="math-heading">밀러-라빈 소수판별법</h2>
 		<p><a href="https://gongbu.herokuapp.com/study/밀러-라빈 소수판별법">밀러-라빈 소수판별법</a>은 어떤 수가 소수인지 판별하는 확률적 알고리즘이다.</p>
-		<input id="num" type="text">
+		<input id="num" type="text" value="7">
 		<input type="button" onclick="primer();" value="완료">
 		<br>
 		<br>
-		<p id="time"></p>
-		<p id="output"></p>
-		<hr>
-		<div w3-include-html="./list.html"></div>
+		<p id="time">0.003 초</p>
+		<p id="output">아마도 소수일 것임.</p>
+		<div class="math-footer" w3-include-html="./list.html"></div>
 		<script>includeHTML();</script>
 		<script src="./public/js/Miller_Rabin_Primality_Test.js"></script>
 		<script src="./public/js/big.min.js"></script>
@@ -44,6 +43,7 @@
 				n = new Big(num.value);
 
 				o.innerHTML = mrpt(n, 20);
+				if (o.innerHTML === '합성수') o.innerHTML += ' <a href="./prime_factorization.html?num=' + n + '">(소인수분해 하기.)</a>'
 				var t2 = performance.now();
 				t.innerHTML = Math.round((t2 - t1) * 100) / 100000 + ' 초';
 			}
