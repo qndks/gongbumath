@@ -71,6 +71,7 @@ a.math-heading-link {
 
     .math-footer {
         padding: 8px 8px;
+        height: fit-content;
     }
 
     .math-footer > div {
