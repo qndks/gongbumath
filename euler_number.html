@@ -15,7 +15,7 @@
 		</header>
 		<h2 class="math-heading">자연상수</h2>
 		<p><a href="https://gongbu.herokuapp.com/study/자연상수">자연상수</a>를 구하는 식은 여러가지가 있다. 수렴 속도가 가장 빠른게 뭔지 알아보자.</p>
-		<canvas id="myChart"></canvas>
+		<div id="canvas_container"><canvas id="myChart"></canvas></div>
 		<div class="math-footer" w3-include-html="./list.html"></div>
 		<script>includeHTML();</script>
 		<script>
@@ -65,6 +65,7 @@
 			        }]
 				},
 				options: {
+					aspectRatio: 1,
 					elements: {
 					  	line: {
 							tension: 0
