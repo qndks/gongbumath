@@ -51,6 +51,7 @@ a.math-heading-link {
 .math-footer {
     height:15rem;
     position:absolute;
+    background-color: #e7e7e7;
     right:0;
     bottom: 0;
     left: 0;
