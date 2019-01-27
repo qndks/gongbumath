@@ -53,12 +53,6 @@ a.math-heading-link {
   color:#000000;
 }
 
-.math-footer {
-    height:15rem;
-    background-color: #ffffff;
-    padding:8px 24px;
-}
-
 @media(max-width: 600px) {
     html {
         background-color: #ffffff;
@@ -66,11 +60,6 @@ a.math-heading-link {
 
     body {
         padding: 12px 8px;
-    }
-
-    .math-footer {
-        padding: 8px 8px;
-        height: fit-content;
     }
 
     .math-footer > div {
