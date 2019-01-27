@@ -53,6 +53,10 @@ a.math-heading-link {
   color:#000000;
 }
 
+.math-footer {
+    margin-top: 25%;
+}
+
 @media(max-width: 600px) {
     html {
         background-color: #ffffff;
